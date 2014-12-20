@@ -26,11 +26,6 @@ namespace Shadowsocks
 
                 if (!mutex.WaitOne(0, false))
                 {
-                    Process[] oldProcesses = Process.GetProcessesByName("Shadowsocks");
-                    if (oldProcesses.Length > 0)
-                    {
-                        Process oldProcess = oldProcesses[0];
-                    }
                     MessageBox.Show("Shadowsocks is already running.\n\nFind Shadowsocks icon in your notify tray.");
                     return;
                 }

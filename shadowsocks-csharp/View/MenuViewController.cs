@@ -71,7 +71,7 @@ namespace Shadowsocks.View
 
         void controller_Errored(object sender, System.IO.ErrorEventArgs e)
         {
-            MessageBox.Show(e.GetException().ToString(), "Error: " + e.GetException().Message);
+            MessageBox.Show(e.GetException().ToString(), String.Format(I18N.GetString("Shadowsocks Error: {0}"), e.GetException().Message));
         }
 
         private void LoadTrayIcon()
@@ -96,7 +96,7 @@ namespace Shadowsocks.View
                 icon = Resources.ss24;
             }
             notifyIcon1 = new NotifyIcon();
-            notifyIcon1.Text = "Shadowsocks";
+            notifyIcon1.Text =  I18N.GetString("Shadowsocks");
             notifyIcon1.Icon = Icon.FromHandle(icon.GetHicon());
             notifyIcon1.Visible = true;
 
@@ -146,7 +146,7 @@ namespace Shadowsocks.View
             // enableItem
             // 
             this.enableItem.Index = 0;
-            this.enableItem.Text = "&Enable";
+            this.enableItem.Text = I18N.GetString("Enable");
             this.enableItem.Click += new System.EventHandler(this.EnableItem_Click);
             //
             // modeMenu
@@ -155,18 +155,18 @@ namespace Shadowsocks.View
             this.modeItem.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.PACModeItem,
             this.globalModeItem});
-            this.modeItem.Text = "Mode";
+            this.modeItem.Text = I18N.GetString("Mode");
             //
             // PACModeItem
             //
             this.PACModeItem.Index = 0;
-            this.PACModeItem.Text = "PAC";
+            this.PACModeItem.Text = I18N.GetString("PAC");
             this.PACModeItem.Click += new System.EventHandler(this.PACModeItem_Click);
             //
             // globalModeItem
             //
             this.globalModeItem.Index = 1;
-            this.globalModeItem.Text = "Global";
+            this.globalModeItem.Text = I18N.GetString("Global");
             this.globalModeItem.Click += new System.EventHandler(this.GlobalModeItem_Click);
             // 
             // ServersItem
@@ -175,7 +175,7 @@ namespace Shadowsocks.View
             this.ServersItem.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.SeperatorItem,
             this.ConfigItem});
-            this.ServersItem.Text = "&Servers";
+            this.ServersItem.Text = I18N.GetString("Servers");
             // 
             // SeperatorItem
             // 
@@ -185,7 +185,7 @@ namespace Shadowsocks.View
             // ConfigItem
             // 
             this.ConfigItem.Index = 1;
-            this.ConfigItem.Text = "Edit Servers...";
+            this.ConfigItem.Text = I18N.GetString("Edit Servers...");
             this.ConfigItem.Click += new System.EventHandler(this.Config_Click);
             // 
             // menuItem1
@@ -196,19 +196,19 @@ namespace Shadowsocks.View
             // AutoStartupItem
             // 
             this.AutoStartupItem.Index = 4;
-            this.AutoStartupItem.Text = "Start on Boot";
+            this.AutoStartupItem.Text = I18N.GetString("Start on Boot");
             this.AutoStartupItem.Click += new System.EventHandler(this.AutoStartupItem_Click);
             // 
             // ShareOverLANItem
             // 
             this.ShareOverLANItem.Index = 5;
-            this.ShareOverLANItem.Text = "Share over LAN";
+            this.ShareOverLANItem.Text = I18N.GetString("Share over LAN");
             this.ShareOverLANItem.Click += new System.EventHandler(this.ShareOverLANItem_Click);
             // 
             // editPACFileItem
             // 
             this.editPACFileItem.Index = 6;
-            this.editPACFileItem.Text = "Edit &PAC File...";
+            this.editPACFileItem.Text = I18N.GetString("Edit PAC File...");
             this.editPACFileItem.Click += new System.EventHandler(this.EditPACFileItem_Click);
             // 
             // menuItem4
@@ -219,19 +219,19 @@ namespace Shadowsocks.View
             // QRCodeItem
             // 
             this.QRCodeItem.Index = 8;
-            this.QRCodeItem.Text = "Show &QRCode...";
+            this.QRCodeItem.Text = I18N.GetString("Show QRCode...");
             this.QRCodeItem.Click += new System.EventHandler(this.QRCodeItem_Click);
             // 
             // ShowLogItem
             // 
             this.ShowLogItem.Index = 9;
-            this.ShowLogItem.Text = "Show Logs...";
+            this.ShowLogItem.Text = I18N.GetString("Show Logs...");
             this.ShowLogItem.Click += new System.EventHandler(this.ShowLogItem_Click);
             // 
             // aboutItem
             // 
             this.aboutItem.Index = 10;
-            this.aboutItem.Text = "About...";
+            this.aboutItem.Text = I18N.GetString("About...");
             this.aboutItem.Click += new System.EventHandler(this.AboutItem_Click);
             // 
             // menuItem3
@@ -242,7 +242,7 @@ namespace Shadowsocks.View
             // quitItem
             // 
             this.quitItem.Index = 12;
-            this.quitItem.Text = "&Quit";
+            this.quitItem.Text = I18N.GetString("Quit");
             this.quitItem.Click += new System.EventHandler(this.Quit_Click);
         }
 
@@ -276,8 +276,8 @@ namespace Shadowsocks.View
 
         void updateChecker_NewVersionFound(object sender, EventArgs e)
         {
-            notifyIcon1.BalloonTipTitle = "Shadowsocks " + updateChecker.LatestVersionNumber + " Update Found";
-            notifyIcon1.BalloonTipText = "Click here to download";
+            notifyIcon1.BalloonTipTitle = String.Format(I18N.GetString("Shadowsocks {0} Update Found"), updateChecker.LatestVersionNumber);
+            notifyIcon1.BalloonTipText = I18N.GetString("Click here to download");
             notifyIcon1.BalloonTipIcon = ToolTipIcon.Info;
             notifyIcon1.BalloonTipClicked += notifyIcon1_BalloonTipClicked;
             notifyIcon1.ShowBalloonTip(5000);
@@ -362,8 +362,8 @@ namespace Shadowsocks.View
         {
             if (_isFirstRun)
             {
-                notifyIcon1.BalloonTipTitle = "Shadowsocks is here";
-                notifyIcon1.BalloonTipText = "You can turn on/off Shadowsocks in the context menu";
+                notifyIcon1.BalloonTipTitle = I18N.GetString("Shadowsocks is here");
+                notifyIcon1.BalloonTipText =  I18N.GetString("You can turn on/off Shadowsocks in the context menu");
                 notifyIcon1.BalloonTipIcon = ToolTipIcon.Info;
                 notifyIcon1.ShowBalloonTip(0);
                 _isFirstRun = false;
